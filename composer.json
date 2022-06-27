@@ -1,0 +1,20 @@
+{
+    "name": "daggerhartlab/collections",
+    "description": "Various types of collection classes.",
+    "type": "library",
+    "autoload": {
+        "psr-4": {
+            "DaggerhartLab\\Collections\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Jonathan Daggerhart",
+            "email": "jonathan@daggerhartlab.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {
+        "dflydev/dot-access-data": "^3.0"
+    }
+}

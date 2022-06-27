@@ -61,6 +61,20 @@ class Collection implements CollectionInterface, IteratorAggregate, Countable {
   /**
    * {@inheritdoc}
    */
+  public function first() {
+    return $this->all()[array_key_first($this->all())] ?? null;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function last() {
+    return $this->all()[array_key_last($this->all())] ?? null;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
   public function getIterator(): ArrayIterator {
     return new ArrayIterator($this->all());
   }
@@ -83,7 +97,11 @@ class Collection implements CollectionInterface, IteratorAggregate, Countable {
    * {@inheritdoc}
    */
   public function filter(callable $callable = null, int $mode = 0): CollectionInterface {
-    return new Collection(array_filter($this->all(), $callable, $mode));
+    return new Collection(call_user_func_array('array_filter', array_filter([
+      $this->all(),
+      $callable,
+      $mode
+    ])));
   }
 
 }

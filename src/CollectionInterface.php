@@ -46,6 +46,22 @@ interface CollectionInterface {
   public function add($item): self;
 
   /**
+   * Get first item in collection.
+   *
+   * @return mixed
+   *   First item in collection.
+   */
+  public function first();
+
+  /**
+   * Get last item in collection.
+   *
+   * @return mixed
+   *   Last item in collection.
+   */
+  public function last();
+
+  /**
    * Map each item in the collection to a callback.
    *
    * @param callable $callable

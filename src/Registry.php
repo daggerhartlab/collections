@@ -27,7 +27,7 @@ class Registry extends Collection implements RegistryInterface, ArrayAccess {
    * {@inheritdoc}
    */
   public function set(string $key, $value): RegistryInterface {
-    $this->all()[$key] = $value;
+    $this->items[$key] = $value;
     return $this;
   }
 

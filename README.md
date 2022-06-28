@@ -11,9 +11,20 @@ Simple set of collection classes.
 | `ClassRegistry`       | A registry that expects the item values to be fully namespaced class names. It can reflect and instantiate the registered classes. |
 | `TraversableRegistry` | A multidimensional registry where deeply nested values can be accessed using dot notation.                                         |
 
-## Examples
+## Collection Examples
 
-### Collection
+All collections share the same methods.
+
+| Method             | Description                                               |
+|--------------------|-----------------------------------------------------------|
+| `all()`            | Get the entire collection as an array.                    |
+| `add(item)`        | Add an item to the collection.                            |
+| `first()`          | Get the first item in the collection.                     |
+| `last()`           | Get the last item in the collection.                      |
+| `map(callable)`    | Perform a callback on each item in the collection.        |
+| `filter(callable)` | Create a new collection that has filtered out some items. |
+
+### Basic `Collection`
 
 A collection is one dimensional list of items that is unconcerned about the name of the individual items.
 
@@ -28,7 +39,7 @@ foreach ($collection as $item) {
 }
 ```
 
-### TypedCollection
+### `TypedCollection`
 
 A collection that only allows one data type into the list.
 
@@ -50,7 +61,18 @@ foreach ($collection as $item) {
 }
 ```
 
-### Registry
+## Registry Examples
+
+All registries contain the same functionality as Collections, and additional methods for dealing with items by their keys.
+
+| Method           | Description                                                |
+|------------------|------------------------------------------------------------|
+| `has(key)`       | Whether the registry contains an item with the given key.  |
+| `get(key)`       | Get an item from the registry by its key.                  |
+| `set(key, item)` | Set an item in the registry with a unique name as the key. |
+| `remove(key)`    | Remove an item from the registry by its key.               |
+
+### Basic `Registry`
 
 A registry is a collection of items where each item in the registry has a unique name.
 

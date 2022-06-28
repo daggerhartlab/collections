@@ -95,7 +95,7 @@ A registry that expects the item values to be fully namespaced class names. It c
 <?php
 
 $registry = new \DaggerhartLab\Collections\ClassRegistry([
-  'example' => '\\Big\\Long\\Fqn\\ExampleModel',
+  'example' => \Big\Long\Fqn\ExampleModel::class,
   'advanced' => '\\Big\\Long\\Fqn\\ExampleAdvancedModel',
 ]);
 
@@ -120,7 +120,7 @@ Get and set values in a multidimensional registry using dot notation.
 <?php
 
 // Get values deeply nested.
-$registry = new \DaggerhartLab\Collections\Registry([
+$registry = new \DaggerhartLab\Collections\TraversableRegistry([
   'one' => [
     'two' => [
       'three' => 'four',
@@ -130,7 +130,7 @@ $registry = new \DaggerhartLab\Collections\Registry([
 echo $registry->get('one.two.three');
 
 // Set values deeply nested.
-$registry = new \DaggerhartLab\Collections\Registry();
+$registry = new \DaggerhartLab\Collections\TraversableRegistry();
 $registry->set('one.two.three', 'four');
 var_export($registry->all());
 ```

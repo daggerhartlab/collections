@@ -35,6 +35,19 @@ A collection that only allows one data type into the list.
 ```php
 <?php
 
+$type = '\\Big\\Long\\Fqn\\ExampleInterface';
+$items = [
+  new \Big\Long\Fqn\ExampleModel(),
+  new \Big\Long\Fqn\ExampleAdvancedModel(),
+  new DateTime(),
+];
+$collection = new \DaggerhartLab\Collections\TypedCollection($type, $items);
+
+// We don't expect the DateTime() to get registered.
+assertEquals(2, $collection->count());
+foreach ($collection as $item) {
+  assertInstanceOf($type, $item);
+}
 ```
 
 ### Registry
@@ -68,7 +81,7 @@ $items = [
   'advanced' => new \Big\Long\Fqn\ExampleAdvancedModel(),
   'another' => new DateTime(),
 ];
-$registry = new TypedRegistry($type, $items);
+$registry = new \DaggerhartLab\Collections\TypedRegistry($type, $items);
 
 $example = $registry->get('example');
 echo $example->getTitle();
@@ -81,7 +94,7 @@ A registry that expects the item values to be fully namespaced class names. It c
 ```php
 <?php
 
-$registry = new ClassRegistry([
+$registry = new \DaggerhartLab\Collections\ClassRegistry([
   'example' => '\\Big\\Long\\Fqn\\ExampleModel',
   'advanced' => '\\Big\\Long\\Fqn\\ExampleAdvancedModel',
 ]);
@@ -91,10 +104,10 @@ $registry = new ClassRegistry([
  * @var \Big\Long\Fqn\ExampleAdvancedModel $advanced
  */
 $example = $registry->createInstance('example');
-self::assertInstanceOf('\\Big\\Long\\Fqn\\ExampleModel', $example);
+assertInstanceOf('\\Big\\Long\\Fqn\\ExampleModel', $example);
 
 $advanced = $registry->createInstance('advanced', ['param1', 'param2', null, 'param3' => ['is_an_array' => true]]);
-self::assertInstanceOf('\\Big\\Long\\Fqn\\ExampleAdvancedModel', $advanced);
+assertInstanceOf('\\Big\\Long\\Fqn\\ExampleAdvancedModel', $advanced);
 ```
 
 ### TraversableRegistry

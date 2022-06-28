@@ -27,14 +27,26 @@ class ClassRegistryTest extends TestCase {
       'advanced' => '\\Big\\Long\\Fqn\\ExampleAdvancedModel',
     ]);
 
+    $params = [
+      'param1',
+      'param2',
+      null,
+      [
+        'is_an_array' => true,
+      ],
+    ];
+
     /**
      * @var \Big\Long\Fqn\ExampleModel $example
      * @var \Big\Long\Fqn\ExampleAdvancedModel $advanced
      */
     $example = $registry->createInstance('example');
     self::assertInstanceOf('\\Big\\Long\\Fqn\\ExampleModel', $example);
-    $advanced = $registry->createInstance('advanced', ['param1', 'param2', null, 'param3' => ['is_an_array' => true]]);
+
+    $params[] = $example;
+    $advanced = $registry->createInstance('advanced', $params);
     self::assertInstanceOf('\\Big\\Long\\Fqn\\ExampleAdvancedModel', $advanced);
+    self::assertEquals($params, $advanced->getParameters());
   }
 
 }

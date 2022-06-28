@@ -2,6 +2,7 @@
     "name": "daggerhartlab/collections",
     "description": "Various types of collection classes.",
     "type": "library",
+    "license": "GPL-2.0-or-later",
     "autoload": {
         "psr-4": {
             "DaggerhartLab\\Collections\\": "src/"

@@ -10,6 +10,16 @@ class TypedRegistry extends TypedCollection implements RegistryInterface {
   /**
    * {@inheritdoc}
    */
+  public function setAll(array $items = []): self {
+    foreach ($items as $key => $item) {
+      $this->set($key, $item);
+    }
+    return $this;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
   public function has(string $key): bool {
     return isset($this->all()[$key]);
   }
@@ -24,7 +34,7 @@ class TypedRegistry extends TypedCollection implements RegistryInterface {
   /**
    * {@inheritdoc}
    */
-  public function set(string $key, $value): RegistryInterface {
+  public function set(string $key, $value): self {
     // Only allow typed data into the collection.
     if ($this->isType($value)) {
       $this->items[$key] = $value;

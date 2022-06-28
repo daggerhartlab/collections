@@ -17,16 +17,13 @@ class TypedCollection extends Collection implements TypedCollectionInterface {
   /**
    * Construct the typed collection.
    *
-   * @param array $items
-   *   Initial collection items.
    * @param string|NULL $type
    *   Data type name. If a class, fully namespaced.
+   * @param array $items
+   *   Initial collection items.
    */
-  public function __construct(array $items = [], string $type = null) {
-    if ($type) {
-      $this->setType($type);
-    }
-
+  public function __construct(string $type, array $items = []) {
+    $this->setType($type);
     parent::__construct($items);
   }
 

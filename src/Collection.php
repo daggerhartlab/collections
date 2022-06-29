@@ -90,14 +90,16 @@ class Collection implements CollectionInterface, IteratorAggregate, Countable {
    * {@inheritdoc}
    */
   public function map(callable $callable): CollectionInterface {
-    return new Collection(array_map($callable, $this->all()));
+    // Mapping can result in a collection of any type of data. So, we'l return
+    // a simple collection.
+    return new self(array_map($callable, $this->all()));
   }
 
   /**
    * {@inheritdoc}
    */
   public function filter(callable $callable = null, int $mode = 0): CollectionInterface {
-    return new Collection(call_user_func_array('array_filter', array_filter([
+    return new static(call_user_func_array('array_filter', array_filter([
       $this->all(),
       $callable,
       $mode

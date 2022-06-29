@@ -69,7 +69,51 @@ class TypedCollection extends Collection implements TypedCollectionInterface {
    * {@inheritdoc}
    */
   public function isType($item): bool {
-    return (is_a($item, $this->getType()) || is_subclass_of($item, $this->getType()));
+    if (is_object($item)) {
+      return (is_a($item, $this->getType()) || is_subclass_of($item, $this->getType()));
+    }
+
+    switch (strtolower($this->getType())) {
+      case 'string':
+        return is_string($item);
+
+      case 'bool':
+      case 'boolean':
+        return is_bool($item);
+
+      case 'int':
+      case 'integer':
+        return is_int($item);
+
+      case 'float':
+        return is_float($item);
+
+      case 'numeric':
+        return is_numeric($item);
+
+      case 'callable':
+      case 'callback':
+        return is_callable($item);
+
+      case 'array':
+        return is_array($item);
+
+      default:
+        return false;
+
+    }
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function filter(callable $callable = null, int $mode = 0): CollectionInterface {
+    // Maintain the collection type when filtering.
+    return new static($this->getType(), call_user_func_array('array_filter', array_filter([
+      $this->all(),
+      $callable,
+      $mode
+    ])));
   }
 
 }

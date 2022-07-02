@@ -24,7 +24,7 @@ interface CollectionInterface {
    * @return $this
    *   Fluent setter.
    */
-  public function setAll(array $items = []): self;
+  public function setAll(array $items = []): CollectionInterface;
 
   /**
    * Determine if an item is in the collection.
@@ -43,7 +43,7 @@ interface CollectionInterface {
    * @return $this
    *   Fluent setter.
    */
-  public function add($item): self;
+  public function add($item): CollectionInterface;
 
   /**
    * Get first item in collection.

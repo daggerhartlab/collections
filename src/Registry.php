@@ -34,7 +34,7 @@ class Registry extends Collection implements RegistryInterface, ArrayAccess {
   /**
    * {@inheritdoc}
    */
-  public function remove(string $key): self {
+  public function remove(string $key): RegistryInterface {
     unset($this->items[$key]);
     return $this;
   }

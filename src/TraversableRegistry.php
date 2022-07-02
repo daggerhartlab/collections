@@ -59,7 +59,7 @@ class TraversableRegistry extends Collection implements RegistryInterface {
   /**
    * {@inheritdoc}
    */
-  public function set(string $key, $value): self {
+  public function set(string $key, $value): RegistryInterface {
     $this->items->set($key, $value);
     return $this;
   }
@@ -67,7 +67,7 @@ class TraversableRegistry extends Collection implements RegistryInterface {
   /**
    * {@inheritdoc}
    */
-  public function remove(string $key): self {
+  public function remove(string $key): RegistryInterface {
     $this->items->remove($key);
     return $this;
   }

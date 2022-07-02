@@ -90,7 +90,7 @@ class Collection implements CollectionInterface, IteratorAggregate, Countable {
    * {@inheritdoc}
    */
   public function map(callable $callable): CollectionInterface {
-    // Mapping can result in a collection of any type of data. So, we'l return
+    // Mapping can result in a collection of any type of data. So, we'll return
     // a simple collection.
     return new self(array_map($callable, $this->all()));
   }

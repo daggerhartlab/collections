@@ -16,7 +16,7 @@ interface TypedCollectionInterface extends CollectionInterface {
    * @return $this
    *   Fluent setter.
    */
-  public function setType(string $type): self;
+  public function setType(string $type): TypedCollectionInterface;
 
   /**
    * Get the collection data type name.

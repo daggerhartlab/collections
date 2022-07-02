@@ -12,7 +12,7 @@ class TypedCollection extends Collection implements TypedCollectionInterface {
    *
    * @var string
    */
-  protected string $type;
+  protected $type;
 
   /**
    * Construct the typed collection.

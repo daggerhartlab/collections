@@ -42,7 +42,7 @@ interface RegistryInterface extends CollectionInterface {
    * @return $this
    *   Fluent setter.
    */
-  public function set(string $key, $value): self;
+  public function set(string $key, $value): RegistryInterface;
 
   /**
    * Remove a value from the store by name by using the unset() function.
@@ -53,6 +53,6 @@ interface RegistryInterface extends CollectionInterface {
    * @return $this
    *   Fluent.
    */
-  public function remove(string $key): self;
+  public function remove(string $key): RegistryInterface;
 
 }

@@ -5,28 +5,28 @@ namespace DaggerhartLab\Collections;
 use ArrayAccess;
 
 /**
- * Collection of keyed values.
+ * A registry is a Dictionary of data. A collection of keyed values.
  */
 class Registry extends Collection implements RegistryInterface, ArrayAccess {
 
   /**
    * {@inheritdoc}
    */
-  public function has(string $key): bool {
+  public function has($key): bool {
     return isset($this->all()[$key]);
   }
 
   /**
    * {@inheritdoc}
    */
-  public function get(string $key, $default = NULL) {
+  public function get($key, $default = NULL) {
     return $this->all()[$key] ?? $default;
   }
 
   /**
    * {@inheritdoc}
    */
-  public function set(string $key, $value): RegistryInterface {
+  public function set($key, $value): RegistryInterface {
     $this->items[$key] = $value;
     return $this;
   }
@@ -34,7 +34,7 @@ class Registry extends Collection implements RegistryInterface, ArrayAccess {
   /**
    * {@inheritdoc}
    */
-  public function remove(string $key): RegistryInterface {
+  public function remove($key): RegistryInterface {
     unset($this->items[$key]);
     return $this;
   }

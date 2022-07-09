@@ -20,21 +20,21 @@ class TypedRegistry extends TypedCollection implements RegistryInterface {
   /**
    * {@inheritdoc}
    */
-  public function has(string $key): bool {
+  public function has($key): bool {
     return isset($this->all()[$key]);
   }
 
   /**
    * {@inheritdoc}
    */
-  public function get(string $key, $default = NULL) {
+  public function get($key, $default = NULL) {
     return $this->all()[$key] ?? $default;
   }
 
   /**
    * {@inheritdoc}
    */
-  public function set(string $key, $value): RegistryInterface {
+  public function set($key, $value): RegistryInterface {
     // Only allow typed data into the collection.
     if ($this->isType($value)) {
       $this->items[$key] = $value;
@@ -46,7 +46,7 @@ class TypedRegistry extends TypedCollection implements RegistryInterface {
   /**
    * {@inheritdoc}
    */
-  public function remove(string $key): RegistryInterface {
+  public function remove($key): RegistryInterface {
     unset($this->items[$key]);
     return $this;
   }

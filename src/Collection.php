@@ -7,7 +7,7 @@ use Countable;
 use IteratorAggregate;
 
 /**
- * Base collection class.
+ * A collection is a List of data. Also serves as an abstraction of an array.
  */
 class Collection implements CollectionInterface, IteratorAggregate, Countable {
 

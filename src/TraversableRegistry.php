@@ -34,7 +34,7 @@ class TraversableRegistry extends Collection implements RegistryInterface {
   /**
    * {@inheritdoc}
    */
-  public function add($item, string $key = null): CollectionInterface {
+  public function add($item, $key = null): CollectionInterface {
     if (!$key) {
       throw new \RuntimeException('Key is required. The "add()" method is for appending items to an array nested within the data.');
     }
@@ -45,21 +45,21 @@ class TraversableRegistry extends Collection implements RegistryInterface {
   /**
    * {@inheritdoc}
    */
-  public function has(string $key): bool {
+  public function has($key): bool {
     return $this->items->has($key);
   }
 
   /**
    * {@inheritdoc}
    */
-  public function get(string $key, $default = NULL) {
+  public function get($key, $default = NULL) {
     return $this->items->get($key, $default);
   }
 
   /**
    * {@inheritdoc}
    */
-  public function set(string $key, $value): RegistryInterface {
+  public function set($key, $value): RegistryInterface {
     $this->items->set($key, $value);
     return $this;
   }
@@ -67,7 +67,7 @@ class TraversableRegistry extends Collection implements RegistryInterface {
   /**
    * {@inheritdoc}
    */
-  public function remove(string $key): RegistryInterface {
+  public function remove($key): RegistryInterface {
     $this->items->remove($key);
     return $this;
   }

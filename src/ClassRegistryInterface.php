@@ -13,7 +13,7 @@ interface ClassRegistryInterface extends RegistryInterface {
   /**
    * Get a reflection instance of the class.
    *
-   * @param string $key
+   * @param string|int $key
    *   Name of the class in the registry.
    *
    * @return ReflectionClass
@@ -21,12 +21,12 @@ interface ClassRegistryInterface extends RegistryInterface {
    *
    * @throws ReflectionException
    */
-  public function getReflection(string $key): ReflectionClass;
+  public function getReflection($key): ReflectionClass;
 
   /**
    * Create a new instance of the class.
    *
-   * @param string $key
+   * @param string|int $key
    *   Name of the class in the registry.
    * @param array $parameters
    *   Constructor parameters for the class.
@@ -36,6 +36,6 @@ interface ClassRegistryInterface extends RegistryInterface {
    *
    * @throws ReflectionException
    */
-  public function createInstance(string $key, array $parameters = []);
+  public function createInstance($key, array $parameters = []);
 
 }

@@ -12,14 +12,14 @@ class ClassRegistry extends Registry implements ClassRegistryInterface {
   /**
    * {@inheritdoc}
    */
-  public function getReflection(string $key): ReflectionClass {
+  public function getReflection($key): ReflectionClass {
     return new ReflectionClass($this->get($key));
   }
 
   /**
    * {@inheritdoc}
    */
-  public function createInstance(string $key, array $parameters = []) {
+  public function createInstance($key, array $parameters = []) {
     $reflection = $this->getReflection($key);
     if ( null === $reflection->getConstructor() ) {
       return $reflection->newInstanceWithoutConstructor();

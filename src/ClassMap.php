@@ -7,7 +7,7 @@ use ReflectionClass;
 /**
  * Collection of keyed class names.
  */
-class ClassRegistry extends Registry implements ClassRegistryInterface {
+class ClassMap extends Map implements ClassMapInterface {
 
   /**
    * {@inheritdoc}

@@ -5,9 +5,9 @@ namespace DaggerhartLab\Collections;
 use Dflydev\DotAccessData\Data;
 
 /**
- * Registry that expects to be multidimensional array.
+ * Map that expects to be multidimensional array.
  */
-class TraversableRegistry extends Collection implements RegistryInterface {
+class TraversableMap extends Collection implements MapInterface {
 
   /**
    * Instance of traversable data.
@@ -59,7 +59,7 @@ class TraversableRegistry extends Collection implements RegistryInterface {
   /**
    * {@inheritdoc}
    */
-  public function set($key, $value): RegistryInterface {
+  public function set($key, $value): MapInterface {
     $this->items->set($key, $value);
     return $this;
   }
@@ -67,7 +67,7 @@ class TraversableRegistry extends Collection implements RegistryInterface {
   /**
    * {@inheritdoc}
    */
-  public function remove($key): RegistryInterface {
+  public function remove($key): MapInterface {
     $this->items->remove($key);
     return $this;
   }

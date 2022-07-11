@@ -1,13 +1,13 @@
 <?php
 
 
-use DaggerhartLab\Collections\TraversableRegistry;
+use DaggerhartLab\Collections\TraversableMap;
 use PHPUnit\Framework\TestCase;
 
-class TraversableRegistryTest extends TestCase {
+class TraversableMapTest extends TestCase {
 
-  protected function getRegistry() {
-    return new TraversableRegistry([
+  protected function getMap() {
+    return new TraversableMap([
       'a' => [
         'one' => 1,
         'two' => 2,
@@ -39,71 +39,71 @@ class TraversableRegistryTest extends TestCase {
    * @return void
    */
   public function testHas() {
-    $registry = $this->getRegistry();
+    $map = $this->getMap();
 
-    self::assertTrue($registry->has('a'));
-    self::assertTrue($registry->has('b.three'));
-    self::assertTrue($registry->has('c.deep.nested.items.very'));
+    self::assertTrue($map->has('a'));
+    self::assertTrue($map->has('b.three'));
+    self::assertTrue($map->has('c.deep.nested.items.very'));
 
-    self::assertNotTrue($registry->has('d'));
-    self::assertNotTrue($registry->has('c.deep.nested.missing.not-real'));
+    self::assertNotTrue($map->has('d'));
+    self::assertNotTrue($map->has('c.deep.nested.missing.not-real'));
   }
 
   /**
    * @return void
    */
   public function testCount() {
-    $registry = $this->getRegistry();
+    $map = $this->getMap();
 
-    self::assertEquals(3, $registry->count());
+    self::assertEquals(3, $map->count());
   }
 
   /**
    * @return void
    */
   public function testGet() {
-    $registry = $this->getRegistry();
+    $map = $this->getMap();
 
     self::assertEquals([
       'one' => 1,
       'two' => 2,
-    ], $registry->get('a'));
-    self::assertEquals(3, $registry->get('b.three'));
-    self::assertEquals('deep', $registry->get('c.deep.nested.items.very'));
-    self::assertEquals('default-value', $registry->get('c.deep.nested.missing.not-real', 'default-value'));
+    ], $map->get('a'));
+    self::assertEquals(3, $map->get('b.three'));
+    self::assertEquals('deep', $map->get('c.deep.nested.items.very'));
+    self::assertEquals('default-value', $map->get('c.deep.nested.missing.not-real', 'default-value'));
   }
 
   /**
    * @return void
    */
   public function testSet() {
-    $registry = $this->getRegistry();
+    $map = $this->getMap();
 
-    $registry->set('d', [
+    $map->set('d', [
       'ten' => 10,
       'eleven' => 11,
     ]);
 
-    self::assertEquals(10, $registry->get('d.ten'));
-    self::assertEquals(11, $registry->get('d.eleven'));
+    self::assertEquals(10, $map->get('d.ten'));
+    self::assertEquals(11, $map->get('d.eleven'));
 
-    $registry->set('c.deep.nested.items.very', [
+    $map->set('c.deep.nested.items.very', [
       'very' => [
         'very' => 'deep',
       ],
     ]);
 
-    self::assertEquals('deep', $registry->get('c.deep.nested.items.very.very.very'));
+    self::assertEquals('deep', $map->get('c.deep.nested.items.very.very.very'));
   }
 
   /**
    * @return void
    */
   public function testAdd() {
-    $registry = $this->getRegistry();
-    $registry->add(21, 'c.items');
+    $map = $this->getMap();
+    $map->add(21, 'c.items');
 
-    $items = $registry->get('c.items');
+    $items = $map->get('c.items');
     self::assertEquals(11, count($items));
 
     $last = end($items);
@@ -116,34 +116,34 @@ class TraversableRegistryTest extends TestCase {
    * @return void
    */
   public function testRemove() {
-    $registry = $this->getRegistry();
-    self::assertEquals(3, $registry->get('b.three', 'default-value'));
+    $map = $this->getMap();
+    self::assertEquals(3, $map->get('b.three', 'default-value'));
 
-    $registry->remove('b.three');
-    self::assertEquals('default-value', $registry->get('b.three', 'default-value'));
+    $map->remove('b.three');
+    self::assertEquals('default-value', $map->get('b.three', 'default-value'));
   }
 
   /**
    * @return void
    */
   public function testFirst() {
-    $registry = $this->getRegistry();
+    $map = $this->getMap();
     self::assertEquals([
       'one' => 1,
       'two' => 2,
-    ], $registry->first());
+    ], $map->first());
   }
 
   /**
    * @return void
    */
   public function testLast() {
-    $registry = $this->getRegistry();
-    $registry->set('d', 1);
-    $registry->set('e', 1);
-    $registry->set('f', 'new-last-item');
+    $map = $this->getMap();
+    $map->set('d', 1);
+    $map->set('e', 1);
+    $map->set('f', 'new-last-item');
 
-    self::assertEquals('new-last-item', $registry->last());
+    self::assertEquals('new-last-item', $map->last());
   }
 
 
@@ -151,7 +151,7 @@ class TraversableRegistryTest extends TestCase {
    * @return void
    */
   public function testAll() {
-    $registry = $this->getRegistry();
+    $map = $this->getMap();
     self::assertEquals([
       'a' => [
         'one' => 1,
@@ -177,15 +177,15 @@ class TraversableRegistryTest extends TestCase {
         ],
         'items' => range(11, 20),
       ],
-    ], $registry->all());
+    ], $map->all());
   }
 
   /**
    * @return void
    */
   public function testSetAll() {
-    $registry = $this->getRegistry();
-    $registry->setAll([
+    $map = $this->getMap();
+    $map->setAll([
       'z' => 26,
       'y' => 25,
       'x' => 24,
@@ -194,12 +194,12 @@ class TraversableRegistryTest extends TestCase {
       ],
     ]);
 
-    self::assertEquals('default', $registry->get('a', 'default'));
-    self::assertEquals(null, $registry->get('b'));
+    self::assertEquals('default', $map->get('a', 'default'));
+    self::assertEquals(null, $map->get('b'));
 
-    self::assertEquals(26, $registry->get('z'));
-    self::assertEquals(25, $registry->get('y'));
-    self::assertEquals(23, $registry->get('w.nested'));
+    self::assertEquals(26, $map->get('z'));
+    self::assertEquals(25, $map->get('y'));
+    self::assertEquals(23, $map->get('w.nested'));
   }
 
 }

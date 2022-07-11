@@ -5,7 +5,7 @@ namespace DaggerhartLab\Collections;
 /**
  * Typed collection with keyed values.
  */
-class TypedRegistry extends TypedCollection implements RegistryInterface {
+class TypedMap extends TypedCollection implements MapInterface {
 
   /**
    * {@inheritdoc}
@@ -34,7 +34,7 @@ class TypedRegistry extends TypedCollection implements RegistryInterface {
   /**
    * {@inheritdoc}
    */
-  public function set($key, $value): RegistryInterface {
+  public function set($key, $value): MapInterface {
     // Only allow typed data into the collection.
     if ($this->isType($value)) {
       $this->items[$key] = $value;
@@ -46,7 +46,7 @@ class TypedRegistry extends TypedCollection implements RegistryInterface {
   /**
    * {@inheritdoc}
    */
-  public function remove($key): RegistryInterface {
+  public function remove($key): MapInterface {
     unset($this->items[$key]);
     return $this;
   }

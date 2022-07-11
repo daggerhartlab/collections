@@ -1,20 +1,20 @@
 <?php
 
-use DaggerhartLab\Collections\ClassRegistry;
+use DaggerhartLab\Collections\ClassMap;
 use PHPUnit\Framework\TestCase;
 
-class ClassRegistryTest extends TestCase {
+class ClassMapTest extends TestCase {
 
   /**
    * @return void
    */
   public function testGetReflection() {
-    $registry = new ClassRegistry([
+    $map = new ClassMap([
       'example' => '\\Big\\Long\\Fqn\\ExampleModel',
       'advanced' => '\\Big\\Long\\Fqn\\ExampleAdvancedModel',
     ]);
 
-    $reflection = $registry->getReflection('example');
+    $reflection = $map->getReflection('example');
     self::assertInstanceOf('ReflectionClass', $reflection);
   }
 
@@ -22,7 +22,7 @@ class ClassRegistryTest extends TestCase {
    * @return void
    */
   public function testCreateInstance() {
-    $registry = new ClassRegistry([
+    $map = new ClassMap([
       'example' => '\\Big\\Long\\Fqn\\ExampleModel',
       'advanced' => '\\Big\\Long\\Fqn\\ExampleAdvancedModel',
     ]);
@@ -40,11 +40,11 @@ class ClassRegistryTest extends TestCase {
      * @var \Big\Long\Fqn\ExampleModel $example
      * @var \Big\Long\Fqn\ExampleAdvancedModel $advanced
      */
-    $example = $registry->createInstance('example');
+    $example = $map->createInstance('example');
     self::assertInstanceOf('\\Big\\Long\\Fqn\\ExampleModel', $example);
 
     $params[] = $example;
-    $advanced = $registry->createInstance('advanced', $params);
+    $advanced = $map->createInstance('advanced', $params);
     self::assertInstanceOf('\\Big\\Long\\Fqn\\ExampleAdvancedModel', $advanced);
     self::assertEquals($params, $advanced->getParameters());
   }

@@ -5,9 +5,9 @@ namespace DaggerhartLab\Collections;
 use ArrayAccess;
 
 /**
- * A registry is a Dictionary of data. A collection of keyed values.
+ * A map is a Dictionary of data. A collection of keyed values.
  */
-class Registry extends Collection implements RegistryInterface, ArrayAccess {
+class Map extends Collection implements MapInterface, ArrayAccess {
 
   /**
    * {@inheritdoc}
@@ -26,7 +26,7 @@ class Registry extends Collection implements RegistryInterface, ArrayAccess {
   /**
    * {@inheritdoc}
    */
-  public function set($key, $value): RegistryInterface {
+  public function set($key, $value): MapInterface {
     $this->items[$key] = $value;
     return $this;
   }
@@ -34,7 +34,7 @@ class Registry extends Collection implements RegistryInterface, ArrayAccess {
   /**
    * {@inheritdoc}
    */
-  public function remove($key): RegistryInterface {
+  public function remove($key): MapInterface {
     unset($this->items[$key]);
     return $this;
   }

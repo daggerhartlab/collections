@@ -1,6 +1,6 @@
 <?php
 
-use DaggerhartLab\Collections\Map;
+use DaggerhartLab\Collections\Map\Map;
 use PHPUnit\Framework\TestCase;
 
 class MapTest extends TestCase {

@@ -1,6 +1,9 @@
 <?php declare(strict_types=1);
 
-namespace DaggerhartLab\Collections;
+namespace DaggerhartLab\Collections\Map;
+
+use DaggerhartLab\Collections\CollectionInterface;
+use DaggerhartLab\Collections\TypedCollection;
 
 /**
  * Typed collection with keyed values.

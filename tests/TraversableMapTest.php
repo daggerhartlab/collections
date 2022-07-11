@@ -1,7 +1,7 @@
 <?php
 
 
-use DaggerhartLab\Collections\TraversableMap;
+use DaggerhartLab\Collections\Map\TraversableMap;
 use PHPUnit\Framework\TestCase;
 
 class TraversableMapTest extends TestCase {

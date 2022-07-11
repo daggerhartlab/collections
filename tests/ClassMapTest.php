@@ -1,6 +1,6 @@
 <?php
 
-use DaggerhartLab\Collections\ClassMap;
+use DaggerhartLab\Collections\Map\ClassMap;
 use PHPUnit\Framework\TestCase;
 
 class ClassMapTest extends TestCase {

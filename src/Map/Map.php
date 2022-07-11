@@ -1,8 +1,9 @@
 <?php declare(strict_types=1);
 
-namespace DaggerhartLab\Collections;
+namespace DaggerhartLab\Collections\Map;
 
 use ArrayAccess;
+use DaggerhartLab\Collections\Collection;
 
 /**
  * A map is a Dictionary of data. A collection of keyed values.

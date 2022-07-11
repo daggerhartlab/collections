@@ -1,7 +1,9 @@
 <?php declare(strict_types=1);
 
-namespace DaggerhartLab\Collections;
+namespace DaggerhartLab\Collections\Map;
 
+use DaggerhartLab\Collections\Collection;
+use DaggerhartLab\Collections\CollectionInterface;
 use Dflydev\DotAccessData\Data;
 
 /**

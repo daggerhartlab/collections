@@ -1,6 +1,6 @@
 <?php
 
-use DaggerhartLab\Collections\TypedMap;
+use DaggerhartLab\Collections\Map\TypedMap;
 use PHPUnit\Framework\TestCase;
 
 class TypedMapTest extends TestCase {

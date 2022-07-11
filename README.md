@@ -79,7 +79,7 @@ A registry is a collection of items where each item in the registry has a unique
 ```php
 <?php
 
-$registry = new \DaggerhartLab\Collections\Map([
+$registry = new \DaggerhartLab\Collections\Map\Map([
   'one' => 1,
   'two' => 'buckle my shoe',
   'three' => 3,
@@ -103,7 +103,7 @@ $items = [
   'advanced' => new \Big\Long\Fqn\ExampleAdvancedModel(),
   'another' => new DateTime(),
 ];
-$registry = new \DaggerhartLab\Collections\TypedMap($type, $items);
+$registry = new \DaggerhartLab\Collections\Map\TypedMap($type, $items);
 
 $example = $registry->get('example');
 echo $example->getTitle();
@@ -116,7 +116,7 @@ A registry that expects the item values to be fully namespaced class names. It c
 ```php
 <?php
 
-$registry = new \DaggerhartLab\Collections\ClassMap([
+$registry = new \DaggerhartLab\Collections\Map\ClassMap([
   'example' => \Big\Long\Fqn\ExampleModel::class,
   'advanced' => '\\Big\\Long\\Fqn\\ExampleAdvancedModel',
 ]);
@@ -142,7 +142,7 @@ Get and set values in a multidimensional registry using dot notation.
 <?php
 
 // Get values deeply nested.
-$registry = new \DaggerhartLab\Collections\TraversableMap([
+$registry = new \DaggerhartLab\Collections\Map\TraversableMap([
   'one' => [
     'two' => [
       'three' => 'four',
@@ -152,7 +152,7 @@ $registry = new \DaggerhartLab\Collections\TraversableMap([
 echo $registry->get('one.two.three');
 
 // Set values deeply nested.
-$registry = new \DaggerhartLab\Collections\TraversableMap();
+$registry = new \DaggerhartLab\Collections\Map\TraversableMap();
 $registry->set('one.two.three', 'four');
 var_export($registry->all());
 ```

@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace DaggerhartLab\Collections;
+namespace DaggerhartLab\Collections\Map;
 
 use ReflectionClass;
 use ReflectionException;

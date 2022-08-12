@@ -85,4 +85,12 @@ interface CollectionInterface {
    */
   public function filter(callable $callable = null, int $mode = 0): CollectionInterface;
 
+  /**
+   * Determine whether the collection has no items.
+   *
+   * @return bool
+   *   Whether the collection has no items.
+   */
+  public function isEmpty(): bool;
+
 }

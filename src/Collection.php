@@ -89,6 +89,13 @@ class Collection implements CollectionInterface, IteratorAggregate, Countable {
   /**
    * {@inheritdoc}
    */
+  public function isEmpty(): bool {
+    return empty($this->items);
+  }
+
+  /**
+   * {@inheritdoc}
+   */
   public function map(callable $callable): CollectionInterface {
     // Mapping can result in a collection of any type of data. So, we'll return
     // a simple collection.
@@ -99,11 +106,12 @@ class Collection implements CollectionInterface, IteratorAggregate, Countable {
    * {@inheritdoc}
    */
   public function filter(callable $callable = null, int $mode = 0): CollectionInterface {
-    return new static(call_user_func_array('array_filter', array_filter([
+    $arguments = array_filter([
       $this->all(),
       $callable,
       $mode
-    ])));
+    ]);
+    return new static(call_user_func_array('array_filter', $arguments ?: [[]]) ?? []);
   }
 
 }
